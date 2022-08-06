@@ -1,6 +1,8 @@
 package com.saikiran.resumeportal.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,6 +18,18 @@ public class UserProfile {
     private String email;
     private String phone;
     private String designation;
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+            @JoinColumn(name="job_id")
+    List<Job> jobs = new ArrayList<>();
     public String getDesignation() {
         return designation;
     }
@@ -87,5 +101,21 @@ public class UserProfile {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", theme=" + theme +
+                ", summary='" + summary + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", designation='" + designation + '\'' +
+                ", jobs=" + jobs +
+                '}';
     }
 }
