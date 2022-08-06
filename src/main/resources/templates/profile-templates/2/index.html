@@ -39,11 +39,12 @@
 
         <!-- Microformats! -->
 
-        <h1 class="fn">C'thulhu</h1>
+        <h1 class="fn"><span th:text="${userProfile.firstName}">Joe</span> <span th:text="${userProfile.lastName}">Bloggs</</span></h1>
 
         <p>
-            Cell: <span class="tel">555-666-7777</span><br />
-            Email: <a class="email" href="mailto:greatoldone@lovecraft.com">greatoldone@lovecraft.com</a>
+            Cell: <span th:text="${userProfile.phone}">0123456789</span><br />
+            <!-- Todo find out how to add attribute value-->
+            Email: <a th:text="${userProfile.email}" href="${userProfile.email}">joe@bloggs.com</a>
         </p>
     </div>
 
