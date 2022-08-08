@@ -69,6 +69,7 @@
 
             </tr>
         </table>
+        <p></p><a href="./edit?add=job" >Add job</a></p>
         <h3>Education</h3>
         <table>
             <thead>
@@ -90,7 +91,7 @@
 
             </tr>
         </table>
-
+       <p><a href="./edit?add=education" >Add Education</a></p>
         <h3>Skills</h3>
         <table>
             <tr th:each="skill,stat : *{skills}">
@@ -98,7 +99,7 @@
                 <td><input class="form:control" th:field="*{skills[__${stat.index}__]}"></td>
             </tr>
         </table>
-
+        <p><a href="./edit?add=skill" >Add Skill</a></p>
         <input type="submit" value="submit">
     </form>
 </div>
