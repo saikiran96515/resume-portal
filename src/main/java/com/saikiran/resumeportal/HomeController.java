@@ -28,7 +28,8 @@ public class HomeController {
         job1.setCompany("Company1");
         job1.setDesignation("Designation");
         job1.setStartDate(LocalDate.of(2020,1,1));
-        job1.setEndDate(LocalDate.of(2020,3,3));
+        //job1.setEndDate(LocalDate.of(2020,3,3));
+        job1.setCurrentJob(true);
         job1.setId(1);
         Job job2 = new Job();
         job2.setCompany("Company2");
