@@ -22,53 +22,8 @@ public class HomeController {
     UserProfileRepository userProfileRepository;
     @GetMapping("/")
     public String home (){
-        Optional<UserProfile> profileOptional = userProfileRepository.findByUserName("einstein");
-        profileOptional.orElseThrow(() -> new RuntimeException("Not found: "));
-        UserProfile profile1 = profileOptional.get();
-        Job job1 = new Job();
-        job1.setCompany("Company1");
-        job1.setDesignation("Designation");
-        job1.setStartDate(LocalDate.of(2020,1,1));
-        List<String>  MyResponsibilities = new ArrayList<>();
-        MyResponsibilities.add("Done the research on Theory of Relativity");
-        MyResponsibilities.add("Fundamental Research");
-        MyResponsibilities.add("Advance Quantum Mechanics");
-        job1.setResponsibilities(MyResponsibilities);
-        job1.setCurrentJob(true);
-        job1.setId(1);
-        Job job2 = new Job();
-        job2.setCompany("Company2");
-        job2.setDesignation("Designation");
-        job2.setStartDate(LocalDate.of(2019,1,1));
-        job2.setEndDate(LocalDate.of(2021,3,3));
-        job2.setId(2);
-        job2.setResponsibilities(MyResponsibilities);
-        profile1.getJobs().clear();
-        profile1.getJobs().add(job1);
-        profile1.getJobs().add(job2);
-        Education e1 = new Education();
-        e1.setCollege("Awesome College");
-        e1.setQualification("useless Degree");
-        e1.setSummary("studied a lot");
-        e1.setStartDate(LocalDate.of(2019,1,1));
-        e1.setEndDate(LocalDate.of(2021,3,3));
 
-
-        Education e2 = new Education();
-        e2.setCollege("Awesome College");
-        e2.setQualification("useless Degree");
-        e2.setSummary("studied a lot");
-        e2.setStartDate(LocalDate.of(2019,1,1));
-        e2.setEndDate(LocalDate.of(2021,3,3));
-        profile1.getEducations().clear();
-        profile1.getEducations().add(e1);
-        profile1.getEducations().add(e2);
-        profile1.getSkills().clear();
-        profile1.getSkills().add("Theoretical physics");
-        profile1.getSkills().add("Quantum physics");
-        profile1.getSkills().add("Relative theory");
-        userProfileRepository.save(profile1);
-        return "profile";
+        return "index";
     }
 
     @GetMapping("/edit")
