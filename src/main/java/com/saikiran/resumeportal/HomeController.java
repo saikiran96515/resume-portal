@@ -104,8 +104,36 @@ public class HomeController {
         return "redirect:/view/" + userName;
     }
 
+    @GetMapping("/delete")
+    public String delete (Model model, Principal principal, @RequestParam String type,@RequestParam int index) {
+        String userName = principal.getName();
+        model.addAttribute("userId",userName);
+        Optional<UserProfile> userProfileOptional=userProfileRepository.findByUserName(userName);
+        userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userName));
+        UserProfile userProfile = userProfileOptional.get();
+        if("job".equals(type)){
+            userProfile.getJobs().remove(index);
+        }else if("education".equals(type))
+        {
+            userProfile.getEducations().remove(index);
+        }else if("skill".equals(type))
+        {
+            userProfile.getSkills().remove(index);
+        }
+        userProfileRepository.save(userProfile);
+        return "redirect:/edit/";
+    }
+
     @GetMapping("/view/{userId}")
-    public String view (@PathVariable String userId, Model model){
+    public String view (Principal principal ,@PathVariable String userId, Model model){
+        System.out.println(principal);
+        if(principal !=null && principal.getName()!="")
+        {
+            boolean currentUsersProfile = principal.getName().equals(userId);
+            model.addAttribute("currentUsersProfile",currentUsersProfile);
+            System.out.println(currentUsersProfile);
+        }
+        String userName= principal.getName();
         Optional<UserProfile> userProfileOptional=userProfileRepository.findByUserName(userId);
         userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
         UserProfile userprofile = userProfileOptional.get();
