@@ -88,7 +88,6 @@ public class HomeController {
             model.addAttribute("currentUsersProfile",currentUsersProfile);
             System.out.println(currentUsersProfile);
         }
-        String userName= principal.getName();
         Optional<UserProfile> userProfileOptional=userProfileRepository.findByUserName(userId);
         userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
         UserProfile userprofile = userProfileOptional.get();
